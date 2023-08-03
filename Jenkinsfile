@@ -3,7 +3,7 @@ node{
    echo "connecting to git server"
  }
  stage('fetching the cyberark provided credentials'){
-  withCredentials([conjurSecretCredential(credentialsId: 'Dev-Team-1123', variable: 'CONJUR_SECRET')]) {
+  withCredentials([conjurSecretCredential(credentialsId: 'conjur-Dev-Team-1123', variable: 'CONJUR_SECRET')]) {
         sh "echo $CONJUR_SECRET | base64"
     }
  
