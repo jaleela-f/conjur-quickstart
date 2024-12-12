@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script{
                     varVal =null
-                withCredentials([conjurSecretCredential(credentialsId: 'inttestvar1', variable: 'CONJUR_SECRET')]) {
+                withCredentials([conjurSecretCredential(credentialsId: 'jaleela-f', variable: 'CONJUR_SECRET')]) {
                         varVal = CONJUR_SECRET
                     }
                 echo "Folder-1-Conjur Cred Val  : ${varVal}"
