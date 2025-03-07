@@ -10,9 +10,16 @@ pipeline{
             }
         }
         stage("test-pipeline Credentials"){
-            steps{
-                withCredentials([conjurSecretCredential(credentialsId: 'test-pipeline-credential1', variable: 'CONJUR_SECRET_TEST_PIPELINE')]) {
-                  sh 'echo $CONJUR_SECRET_TEST_PIPELINE | base64'
+             steps {
+                script {
+                    userVar = null
+                    passVar = null
+                    withCredentials([usernamePassword(credentialsId: 'jenkins_cred', passwordVariable: 'testPwd', usernameVariable: 'testUserName')]) {
+                        userVar = testUserName
+                        passVar = testPwd
+                    }
+                    echo "Username: ${userVar}"
+                    echo "Password: ${passVar}"
                 }
             }
         }
